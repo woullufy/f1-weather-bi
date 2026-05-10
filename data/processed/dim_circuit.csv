@@ -1,0 +1,8 @@
+circuit_key,circuit_short_name,country_name,location,latitude,longitude,coordinate_source_note,circuit_id
+asd,Monaco,Monaco,Monte Carlo,43.7347,7.4206,Street circuit,asd
+2,Silverstone,UK,Silverstone,52.0786,-1.0169,Permanent track,2
+3,Spa,Belgium,Stavelot,50.4372,5.9714,Permanent track,3
+63,Sakhir,Bahrain,Sakhir,26.0325,50.5106,Permanent track,63
+14,Monza,Italy,Monza,45.6189,9.2811,Permanent track,14
+39,Zandvoort,Netherlands,Zandvoort,52.3888,4.5409,Permanent track,39
+15,Singapore,Singapore,Marina Bay,1.2915,103.864,Street circuit,15

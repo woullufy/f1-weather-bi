@@ -1,0 +1,2 @@
+session_key,avg_openmeteo_temperature_2m_c,avg_openmeteo_relative_humidity_2m_pct,total_openmeteo_precipitation_mm,total_openmeteo_rain_mm,avg_openmeteo_cloud_cover_pct,avg_openmeteo_wind_speed_10m_kmh,max_openmeteo_wind_gusts_10m_kmh,openmeteo_rain_flag,weather_context_id,openf1_track_temp_bin,openf1_weather_category
+9472,16.679166666666667,54.625,0.0,0.0,95.91666666666667,10.6625,25.6,False,9472,unknown,Clear
