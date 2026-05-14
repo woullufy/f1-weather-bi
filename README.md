@@ -543,6 +543,7 @@ The dashboard should avoid unrelated visualizations.
 | `docs/source_er_models.md` | Person 2 | Source-data ER models in 3NF |
 | `docs/star_schema.md` | Person 2 | Final star schema and modelling design choices |
 | `docs/data_dictionary.md` | Person 2 + Person 3 | Column definitions, metric definitions, cleaning rules |
+| `slides/person1_slide_content.md` | Person 1 | Copy-ready slide content for topic, data selection, analytical questions, BI value, and fact grain |
 | `slides/presentation.pdf` | Whole group | Final presentation slides |
 | `tableau/f1_tyre_weather_dashboard.twbx` | Person 4 | Tableau workbook |
 
