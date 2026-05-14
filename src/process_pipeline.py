@@ -457,7 +457,7 @@ def build_star_schema():
         driver_number = int(pit_row["driver_number"])
         pit_lap_number = int(pit_row["lap_number"])
 
-        for relative_lap in [-1, 0, 1]:
+        for relative_lap in [-1, 0, 1, 2]:
             lookup_key = (session_key, driver_number, pit_lap_number + relative_lap)
             pit_window_lookup[lookup_key] = relative_lap
 
@@ -484,6 +484,22 @@ def build_star_schema():
             int(row["lap_number"])
         ) in pit_window_lookup,
         axis=1
+    )
+
+    fact_lap["pit_window_phase"] = np.select(
+        [
+            fact_lap["pit_window_relative_lap"] == -1,
+            fact_lap["pit_window_relative_lap"] == 0,
+            fact_lap["pit_window_relative_lap"] == 1,
+            fact_lap["pit_window_relative_lap"] == 2
+        ],
+        [
+            "Lap before pit",
+            "Pit lap",
+            "Pit-out lap",
+            "First normal lap after pit"
+        ],
+        default=None
     )
 
     fact_lap["valid_racing_lap_flag"] = (
@@ -563,6 +579,7 @@ def build_star_schema():
         "is_pit_lap",
         "pit_window_flag",
         "pit_window_relative_lap",
+        "pit_window_phase",
         "position_nearest"
     ]
 
