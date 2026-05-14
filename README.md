@@ -74,8 +74,6 @@ Open-Meteo is used for **external ambient weather context**. It does not replace
 
 ## 4. Repository structure
 
-Use this structure unless the whole group agrees to change it.
-
 ```text
 f1-bi-assignment/
 ├── README.md
