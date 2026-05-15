@@ -55,8 +55,6 @@ f1-weather-bi/
 |   |-- fetch_openmeteo.py
 |   `-- process_pipeline.py
 |-- docs/
-|   |-- data_dictionary.md
-|   |-- source_er_models.md
 |   |-- source_openf1.md
 |   |-- source_openmeteo.md
 |   |-- source_reference.md
