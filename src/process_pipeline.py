@@ -349,7 +349,7 @@ def build_star_schema():
     fact_lap = fact_lap[
         (fact_lap["lap_number"] >= fact_lap["lap_start"])
         & (fact_lap["lap_number"] <= fact_lap["lap_end"])
-    ].copy()
+        ].copy()
 
     print(f"Rows after stint range matching: {len(fact_lap)}")
 
