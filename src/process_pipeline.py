@@ -351,7 +351,47 @@ def build_star_schema():
         & (fact_lap["lap_number"] <= fact_lap["lap_end"])
     ].copy()
 
-    print(f"Rows after stint matching: {len(fact_lap)}")
+    print(f"Rows after stint range matching: {len(fact_lap)}")
+
+    print("Resolving duplicate stint matches...")
+
+    natural_lap_key = ["session_key", "driver_number", "lap_number"]
+
+    # Some OpenF1 stint ranges overlap at boundary laps
+    # To keep the declared fact grain, each driver-lap must belong to only one stint
+    # If a lap is both the end of one stint and the start of the next
+    # we keep the stint that ends on that lap This avoids double-counting boundary laps
+    fact_lap["stint_match_priority"] = np.select(
+        [
+            fact_lap["lap_number"] == fact_lap["lap_end"],
+            fact_lap["lap_number"] == fact_lap["lap_start"]
+        ],
+        [
+            0,  # prefer stint ending on this lap
+            1  # then stint starting on this lap
+        ],
+        default=2
+    )
+
+    duplicate_lap_matches = fact_lap.duplicated(subset=natural_lap_key).sum()
+
+    if duplicate_lap_matches > 0:
+        print(
+            f"Found {duplicate_lap_matches} duplicate driver-lap matches. Keeping one stint assignment per driver-lap.")
+
+    fact_lap = (
+        fact_lap
+        .sort_values(
+            natural_lap_key + ["stint_match_priority", "stint_number"]
+        )
+        .drop_duplicates(
+            subset=natural_lap_key,
+            keep="first"
+        )
+        .drop(columns=["stint_match_priority"])
+    )
+
+    print(f"Rows after duplicate stint resolution: {len(fact_lap)}")
 
     fact_lap["stint_id"] = (
         fact_lap["session_key"].astype(str)
