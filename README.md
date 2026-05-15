@@ -25,7 +25,7 @@ The project downloads public Formula 1 and weather data, transforms it into a st
 | Q2 | Does higher track temperature make soft tyres worse? | Soft-tyre lap-time loss by track temperature |
 | Q3 | Which teams gain or lose the most around pit windows? | Pit-window comparison by team/phase |
 | Q4 | Which drivers have the lowest lap-time variability? | Driver consistency ranking |
-| Q5 | Are some circuits more sensitive to tyre wear or weather? | Circuit and compound sensitivity heatmap |
+| Q5 | Are some circuits more sensitive to tyre wear or weather? | Circuit sensitivity scatter plot |
 
 ## Data Sources
 
@@ -237,6 +237,8 @@ docs/star_schema.md
 | `pit_window_gain_loss_sec` | Difference between post-pit and pre-pit average lap-time delta in the current pipeline |
 | `openf1_track_temp_bin` | Session-level OpenF1 track-temperature category |
 | `openf1_weather_category` | Session-level dry/rain category derived from OpenF1 and Open-Meteo rain indicators |
+
+**Note on pit-stop data:** `fact_pit_stop.csv` is an auxiliary output. The final Tableau Q3 view uses `pit_window_phase` fields in `fact_driver_lap_performance.csv` and a Tableau metric where positive values mean estimated post-pit pace improvement.
 
 ## Tableau Workbook
 
